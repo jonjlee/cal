@@ -133,7 +133,7 @@ class CalComponent extends LitElement {
     if (!this.data) {
       return html`<div class="loading">
         ${this.loadingText ??
-        html`<img src="/img/3-dots-scale.svg" style="height:48px" />`}
+        html`<img src="img/3-dots-scale.svg" style="height:48px" />`}
       </div>`;
     }
 

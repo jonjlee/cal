@@ -43,9 +43,9 @@ function login() {
       } else {
         // Redirect based on whether user is a member of any depts
         if ((await countUserDepts()).count) {
-          window.location.href = "/cal.html";
+          window.location.href = "./cal.html";
         } else {
-          window.location.href = "/dept.html";
+          window.location.href = "./dept.html";
         }
       }
     });
@@ -88,7 +88,7 @@ function register() {
         console.log(error);
       } else {
         // Redirect to department list
-        window.location.href = "/dept.html";
+        window.location.href = "./dept.html";
       }
     });
 }

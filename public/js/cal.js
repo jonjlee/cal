@@ -47,7 +47,7 @@ class CalApp {
         return res;
       } else {
         // Access code was invalid, redirect to login
-        window.location.href = "/login.html";
+        window.location.href = "./login.html";
         throw new Error("Invalid access code, redirecting");
       }
     }
@@ -56,17 +56,17 @@ class CalApp {
       // No accessible dept ID or access code. If user logged in, redirect to first accessible dept, which will trigger reload
       res = await model.getUserDepts();
       if (res.data?.length > 0) {
-        window.location.href = "/cal.html?d=" + res.data[0].id;
+        window.location.href = "./cal.html?d=" + res.data[0].id;
         throw new Error("Invalid department, redirecting");
       }
 
       // No accessible departments, redirect to departments page
-      window.location.href = "/dept.html";
+      window.location.href = "./dept.html";
       throw new Error("No departments, redirecting");
     }
 
     // No user logged in. Redirect to login page.
-    window.location.href = "/login.html";
+    window.location.href = "./login.html";
     throw new Error("User not authenticated, redirecting");
   }
 
@@ -159,7 +159,7 @@ class CalApp {
   async _handleLogout(e) {
     e.preventDefault();
     await model.auth.signOut();
-    window.location.href = "/login.html";
+    window.location.href = "./login.html";
   }
 
   _handleCalSelect(e) {

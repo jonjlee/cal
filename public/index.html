@@ -1,57 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calendar WebApp</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <style>
-        /* Add space between header and login content */
-        main.container {
-            margin-top: 36px;
-        }
-    </style>
-</head>
-<body>
-    <header>
-        <nav class="navbar navbar-light bg-light">
-            <a class="navbar-brand" href="#">
-                <img src="img/logo.jpg" width="30" height="30" class="d-inline-block align-top" alt="Calendar WebApp Logo">
-            </a>
-        </nav>
-    </header>
-    <main class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-4">
-                <div class="login-form">
-                    <h2 class="mb-4">Login</h1>
-                    <form id="loginForm">
-                        <div class="form-group">
-                            <label for="username">Username:</label>
-                            <input type="text" id="username" name="username" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <label for="password">Password:</label>
-                            <input type="password" id="password" name="password" class="form-control">
-                        </div>
-                        <button type="submit" class="btn btn-primary">Login</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </main>
-    <footer>
-        <!-- Your footer content goes here -->
-    </footer>
-    <script>
-        document.querySelector('#loginForm').addEventListener('submit', function (e) {
-            e.preventDefault();
-            const username = document.querySelector('#username').value;
-            const password = document.querySelector('#password').value;
-            location.href = '/cal';
-        });
-    </script>
-</body>
+  <head>
+    <meta http-equiv="refresh" content="0; url=cal.html" />
+    <title>Clinical</title>
+  </head>
+  <body style="display: flex; flex-direction: column; align-items: center">
+    <a href="cal.html">Go to calendar</a>
+    <img src="img/3-dots-scale.svg" style="height: 48px" />
+  </body>
 </html>

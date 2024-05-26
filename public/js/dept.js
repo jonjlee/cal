@@ -26,7 +26,7 @@ function initUI() {
 async function checkAuth() {
   const user = await model.getUser();
   if (!user) {
-    window.location.href = "/login.html";
+    window.location.href = "./login.html";
   }
 }
 
@@ -123,7 +123,7 @@ async function handleNewClick(ev) {
 
   // Redirect to the new dept
   if (data?.length > 0) {
-    window.location.href = "/cal.html?d=" + data[0].id;
+    window.location.href = "./cal.html?d=" + data[0].id;
   } else {
     feedback("Issue creating calendar. Please contact administrator.");
     renderAuthList();
@@ -132,7 +132,7 @@ async function handleNewClick(ev) {
 
 async function handleLogoutClick() {
   await model.auth.signOut();
-  window.location.href = "/login.html";
+  window.location.href = "./login.html";
 }
 
 // Show info/alert text under request access input
