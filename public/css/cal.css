@@ -1,0 +1,389 @@
+/* Variables */
+:root {
+  --sidebar-width: 13em;
+  --month-name-width: 56px;
+  --action-panel-width: 275px;
+
+  --main-background-color: #ffffff;
+  --border-color: #dddddd;
+  --dark-border-color: #808080;
+  --title-color: rgb(4, 101, 166);
+  --section-color: rgb(3, 93, 153);
+  --month-name-color: #757575;
+
+  --gray-text: #9ba2a9;
+  --dark-gray-text: #757575;
+  --dimmed-text: rgba(32, 33, 36, 0.38);
+  --info-text: #0d6efd;
+  --warn-text: #8d1b1b;
+
+  --clickable-hover-color: rgba(60, 167, 255, 0.1);
+
+  --selected-color: rgba(60, 193, 255, 0.15);
+  --dark-gray-icon-color: #757575;
+
+  --info-box-shadow: rgb(255 251 192 / 78%) 0px 0px 10px 7px inset;
+  --warn-box-shadow: rgb(255 251 192 / 78%) 0px -75px 125px 0px inset;
+  /* --warn-box-shadow: rgb(255 204 107 / 56%) 0px -75px 125px 0px inset; */
+  --err-box-shadow: rgb(231 137 137 / 55%) 0px -75px 125px 0px inset;
+}
+
+/* Bootstrap overrides */
+.accordion-item,
+.accordion-button,
+.accordion-body {
+  background-color: inherit;
+  padding: 0px;
+}
+
+.accordion-button {
+  text-align: center;
+  padding-right: 10px;
+
+  &:not(.collapsed) {
+    background-color: inherit;
+    box-shadow: none;
+  }
+}
+
+.accordion-collapse.collapsing {
+  transition: none;
+}
+
+.accordion-body {
+  font-size: 0.9em;
+}
+
+/* Page sections */
+body {
+  background-color: var(--main-background-color);
+  height: 100vh;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+#header {
+  border-bottom: 2px solid var(--border-color);
+
+  /* Logo on left corner */
+  .navbar-brand {
+    color: rgb(103, 103, 103);
+    font-weight: 550;
+    width: 15%;
+  }
+
+  /* Page title - replaced by cal-navbar in cal.html */
+  .title {
+    color: var(--title-color);
+    font-weight: bold;
+    margin-bottom: 0px;
+  }
+
+  /* Hamburger menu - remove button border and box-shadow that shows up when focused */
+  .navbar-toggler {
+    border: none;
+    font-size: 15px;
+    box-shadow: none;
+  }
+
+  .navbar-nav {
+    width: 15%;
+    justify-content: end;
+  }
+
+  /* Grey and blue clini-cal logo. Requires link to Montserrat font included in HTML */
+  .inline-logo {
+    font-family: Montserrat, sans-serif;
+    font-weight: 500;
+    color: #737373;
+
+    &::before {
+      content: "CLINI";
+    }
+
+    &::after {
+      color: #0097b2;
+      content: "CAL";
+    }
+  }
+}
+
+#body-container {
+  flex-grow: 1;
+  display: flex;
+  overflow: hidden;
+}
+
+#sidebar {
+  display: flex;
+  flex-direction: column;
+  min-width: var(--sidebar-width);
+  padding: 10px;
+  align-self: stretch;
+  /* stretch to the height of #body-container */
+  overflow-y: auto;
+
+  /* Main content container of sidebar */
+  .sidebar-sticky {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+#main {
+  flex-grow: 1;
+  align-self: stretch;
+  /* stretch to the height of #body-container */
+  display: flex;
+  border-left: 2px solid var(--border-color);
+}
+
+/* Additional styles used across multiple components */
+.icon {
+  min-width: 1em;
+  height: 1em;
+  vertical-align: -0.125em;
+}
+
+/* Header styles for both sidebar and action panel */
+.sidebar-heading {
+  text-align: center;
+
+  /* Bold blue font */
+  font-size: 1.25rem;
+  font-weight: 450;
+  color: var(--section-color);
+
+  /* Gap between last section and header */
+  margin-top: 10px;
+  /* Gap between header and content */
+  margin-bottom: 5px;
+
+  /* Underline */
+  border-bottom: 1px solid var(--border-color);
+}
+
+.accordion-sidebar-heading {
+  /* Mirrored from sidebar-heading with addition of upper border */
+  font-size: 1.25rem;
+  font-weight: 450;
+  margin-top: 20px;
+  margin-bottom: 5px;
+  border-bottom: 1px solid var(--border-color);
+  border-top: 1px solid var(--border-color);
+  color: var(--section-color);
+
+  &:not(.collapsed) {
+    /* Remove bottom border when section is expanded */
+    border-bottom: none;
+  }
+}
+
+/* Component styles for: cal-component. Most of UI is in shadow DOM - these rules only apply to the light DOM. */
+cal-component {
+  flex-grow: 1;
+  display: flex;
+
+  .loading {
+    flex-grow: 1;
+    padding-top: 20px;
+    text-align: center;
+    color: #8e8e8e;
+  }
+}
+
+/* Component styles for: cal-navbar */
+cal-navbar {
+  /* Flexbox row, center elements vertically */
+  display: flex;
+  align-items: center;
+
+  /* Month / Year words */
+  .cal-navbar-month {
+    min-width: 195px;
+    padding-right: 15px;
+    text-align: right;
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: var(--title-color);
+  }
+
+  /* Date picker next to prev/next month buttons */
+  .cal-navbar-datesel-icon {
+    display: flex;
+    cursor: pointer;
+    min-width: 1em;
+    margin-left: 5px;
+    margin-right: 1.25em;
+    margin-top: -0.125em;
+  }
+
+  .cal-navbar-datesel {
+    visibility: hidden;
+    position: absolute;
+    width: 0px;
+    /* Hide any text that might show up */
+    color: var(--main-background-color);
+  }
+}
+
+/* Component styles for: cal-action-panel */
+cal-action-panel {
+  border-left: 1px solid var(--border-color);
+  min-width: var(--action-panel-width);
+  max-width: var(--action-panel-width);
+
+  nav {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    align-self: stretch;
+    /* stretch to the height of #body-container */
+    overflow-y: auto;
+  }
+
+  .toolbar {
+    padding-bottom: 0.5em;
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .cal-action-panel-header {
+    height: 2.1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .cal-action-panel-content {
+    padding-left: 10px;
+    font-size: 0.9em;
+  }
+
+  .selected-days-label {
+    font-size: 0.75em;
+    color: var(--dark-gray-text);
+    text-align: center;
+    overflow: hidden;
+    text-wrap: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  .selected-days-alerts {
+    margin-top: 3px;
+    margin-bottom: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
+    font-size: 0.75em;
+
+    .alert-date {
+      padding-right: 6px;
+      font-weight: 500;
+      vertical-align: top;
+    }
+  }
+
+  /* Main text content of details section*/
+  .details {
+    height: auto;
+    /* min-height: 15em; */
+  }
+
+  /* Edit section with template day */
+  .edit {
+    display: flex;
+    flex-direction: column;
+
+    .edit-section-label {
+      font-size: 0.9rem;
+      font-weight: 500;
+      margin-bottom: 0.25rem;
+    }
+
+    .edit-section-content {
+      display: flex;
+      flex-direction: column;
+      padding-left: 5px;
+      font-size: 0.9rem;
+
+      .edit-section-row {
+        display: flex;
+      }
+    }
+
+    .edit-toolbar {
+      align-self: flex-end;
+      margin-top: 0.25rem;
+
+      button {
+        padding-top: 0.1rem;
+      }
+    }
+
+    .apply-btn-group {
+      .dropdown-menu {
+        font-size: 0.9rem;
+      }
+    }
+
+    button {
+      height: 1.8rem;
+    }
+
+    input[type="text"] {
+      height: 1.8rem;
+      font-size: 0.9rem;
+      margin-right: 0.5rem;
+    }
+  }
+
+  /* Details > Reports subsection */
+  .reports {
+    display: flex;
+    flex-direction: column;
+
+    /* Dropdown box to select a report to run */
+    div {
+      display: flex;
+      align-items: center;
+
+      .icon {
+        color: #1364ff;
+      }
+    }
+  }
+
+  /* Dropdown lists with an adjacent Run button */
+  .dropdown {
+    flex-grow: 1;
+    margin-left: 0.25rem;
+    margin-right: 0.5rem;
+  }
+
+  .dropdown-action {
+    font-size: 0.85rem;
+    height: 1.5rem;
+    padding-top: 0rem;
+  }
+}
+
+/* Overrides for printing */
+@media print {
+  nav {
+    display: none !important;
+  }
+
+  #sidebar {
+    display: none !important;
+  }
+
+  cal-action-panel.d-lg-block {
+    display: none !important;
+  }
+
+  #body-container {
+    height: auto;
+    overflow: visible;
+  }
+}

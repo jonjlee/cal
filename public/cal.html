@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="favicon.svg" />
+
+    <!-- Library stylesheets -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+
+    <!-- Fonts for logo -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- App styles -->
+    <link rel="stylesheet" href="css/cal.css" />
+
+    <!-- Components -->
+    <script type="module" src="js/components/cal-navbar.js"></script>
+    <script type="module" src="js/components/cal-component.js"></script>
+    <script type="module" src="js/components/cal-callist.js"></script>
+    <script type="module" src="js/components/cal-peoplelist.js"></script>
+    <script type="module" src="js/components/cal-checklist.js"></script>
+    <script type="module" src="js/components/cal-action-panel.js"></script>
+
+    <title>Schedule</title>
+  </head>
+
+  <body>
+    <!-- Navigation bar in header -->
+    <nav id="header" class="navbar navbar-expand-lg">
+      <div class="container-fluid">
+        <!-- Hamburger menu and menu items as icons or list depending on window size -->
+        <button
+          class="navbar-toggler d-block d-md-none"
+          data-bs-toggle="collapse"
+          data-bs-target="#"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Logo -->
+        <a
+          id="deptNameLabel"
+          class="navbar-brand d-none d-md-block fs-4"
+          href="/cal.html"
+          ><span class="inline-logo"></span>
+        </a>
+
+        <div class="flex-grow-1"></div>
+        <!-- Navigation bar for calendar that track current month and navigate between months -->
+        <cal-navbar id="calNav" cal-id="mainCal" class="d-none">
+          <div class="cal-navbar-month"></div>
+          <div class="cal-navbar-changemonth">
+            <button id="cal-navbar-prevmonth" class="btn btn-sm">
+              <i class="fa fa-angle-left" aria-hidden="true"></i>
+            </button>
+            <button id="cal-navbar-nextmonth" class="btn btn-sm">
+              <i class="fa fa-angle-right" aria-hidden="true"></i>
+            </button>
+          </div>
+          <div class="cal-navbar-datesel-icon">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="icon"
+              aria-hidden="true"
+              focusable="false"
+              viewBox="0 0 448 512"
+            >
+              <path
+                fill="currentColor"
+                d="M152 24c0-13.3-10.7-24-24-24s-24 10.7-24 24V64H64C28.7 64 0 92.7 0 128v16 48V448c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V192 144 128c0-35.3-28.7-64-64-64H344V24c0-13.3-10.7-24-24-24s-24 10.7-24 24V64H152V24zM48 192H400V448c0 8.8-7.2 16-16 16H64c-8.8 0-16-7.2-16-16V192z"
+              />
+            </svg>
+            <input type="date" class="cal-navbar-datesel" />
+          </div>
+          <button
+            id="cal-navbar-today-btn"
+            class="btn btn-sm btn-outline-primary"
+          >
+            Today
+          </button>
+        </cal-navbar>
+
+        <!-- Fill horizontal space until hamburger icon / right hand menu icons -->
+        <div class="flex-grow-1"></div>
+
+        <ul id="menu" class="navbar-nav ms-auto">
+          <li class="nav-item d-none d-lg-block">
+            <a class="nav-link" href="/settings.html"
+              ><i class="fas fa-cog"></i
+            ></a>
+          </li>
+          <li class="nav-item d-none d-lg-block">
+            <div class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                <i class="fas fa-user"></i>
+              </a>
+              <ul class="dropdown-menu dropdown-menu-end">
+                <li>
+                  <h5 id="userNameLabel" class="dropdown-header">
+                    Not logged in
+                  </h5>
+                </li>
+                <li><a class="dropdown-item" href="#">Profile</a></li>
+                <li>
+                  <hr class="dropdown-divider" />
+                </li>
+                <li>
+                  <a class="dropdown-item" id="logout" href="#">Logout</a>
+                </li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <div id="body-container">
+      <!-- Left Sidebar -->
+      <nav id="sidebar" class="bg-light sidebar d-none d-md-block">
+        <div class="sidebar-sticky">
+          <p class="sidebar-heading">Calendars</p>
+          <cal-callist id="calList"></cal-callist>
+
+          <p class="sidebar-heading">People</p>
+          <cal-peoplelist id="peopleList"></cal-peoplelist>
+
+          <div class="flex-grow-1"></div>
+
+          <div class="accordion accordion-flush pb-3" id="scheduling-container">
+            <div class="accordion-item">
+              <div
+                class="accordion-button collapsed accordion-sidebar-heading"
+                data-bs-toggle="collapse"
+                data-bs-target="#scheduling-content"
+                aria-expanded="false"
+                aria-controls="scheduling-content"
+              >
+                <div class="flex-grow-1">Schedule</div>
+              </div>
+              <div
+                id="scheduling-content"
+                class="accordion-collapse collapse"
+                data-bs-parent="#scheduling-container"
+              >
+                <div class="accordion-body">
+                  <div>
+                    <input
+                      id="view-default"
+                      class="form-check-input"
+                      name="scheduling-option"
+                      type="radio"
+                      checked="checked"
+                    />
+                    <label for="view-default" class="form-check-label"
+                      >Default View</label
+                    >
+                  </div>
+                  <div class="mt-1">
+                    <input
+                      id="view-changes"
+                      class="form-check-input"
+                      name="scheduling-option"
+                      type="radio"
+                    />
+                    <label for="view-changes" class="form-check-label"
+                      >View changes since</label
+                    >
+                    <div class="ms-1">
+                      <input
+                        id="changeDate"
+                        class="form-control-md ms-3 mt-1"
+                        type="date"
+                      />
+                    </div>
+                  </div>
+                  <div class="mt-1">
+                    <input
+                      id="view-diff"
+                      class="form-check-input"
+                      name="scheduling-option"
+                      type="radio"
+                    />
+                    <label for="view-diff" class="form-check-label"
+                      >Compare to Epic</label
+                    >
+                    <div class="ms-4">
+                      <input id="diffFile" style="display: none" type="file" />
+                      <button
+                        class="btn btn-sm btn-outline-primary"
+                        onclick="document.querySelector('#diffFile').click()"
+                      >
+                        Open File...
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      <main id="main" role="main">
+        <!-- Main Content (Calendar) -->
+        <cal-component id="mainCal">
+          <div class="loading">Loading...</div>
+        </cal-component>
+
+        <!-- Right side bar. Use d-none and d-lg-block to set display: block only on large screen and hide otherwise -->
+        <cal-action-panel
+          id="actionPanel"
+          class="d-none d-lg-block"
+          cal-id="mainCal"
+        ></cal-action-panel>
+      </main>
+    </div>
+
+    <!-- Modal that is used to display reports -->
+    <div class="modal fade" id="reportModal" tabindex="-1">
+      <div
+        class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable"
+      >
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5">Report</h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body"></div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-primary"
+              data-bs-dismiss="modal"
+            >
+              Done
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Popup alert at bottom right -->
+    <div
+      class="toast-container position-fixed top-0 start-50 translate-middle-x p-3"
+    >
+      <div
+        id="notification"
+        class="toast"
+        role="alert"
+        aria-live="assertive"
+        aria-atomic="true"
+      >
+        <div class="toast-body text-danger"></div>
+      </div>
+    </div>
+
+    <!-- Third party JS utilities (JQuery, etc) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <!-- App script -->
+    <script type="module" src="js/bling.js"></script>
+    <script type="module" src="js/cal.js"></script>
+  </body>
+</html>

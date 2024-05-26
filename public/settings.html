@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="favicon.svg" />
+
+    <!-- Library stylesheets -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+
+    <!-- Fonts for logo -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- App styles -->
+    <link rel="stylesheet" href="css/cal.css" />
+    <title>Schedule</title>
+  </head>
+
+  <body>
+    <!-- Navigation bar in header -->
+    <nav id="header" class="navbar navbar-expand-lg">
+      <div class="container-fluid">
+        <!-- Hamburger menu and menu items as icons or list depending on window size -->
+        <button
+          class="navbar-toggler d-block d-md-none"
+          data-bs-toggle="collapse"
+          data-bs-target="#"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Logo -->
+        <a
+          id="deptNameLabel"
+          class="navbar-brand d-none d-md-block fs-4"
+          href="/cal.html"
+          ><span class="inline-logo"></span>
+        </a>
+
+        <div class="flex-grow-1">
+          <!-- By default center text, but on wide (lg) screens, hamburger menu is hidden and the icons on in a flex-grow element, so right align (text-end) the text -->
+          <h3 class="title text-center text-lg-end">Settings</h3>
+        </div>
+
+        <!-- Fill horizontal space until hamburger icon / right hand menu icons -->
+        <div class="flex-grow-1"></div>
+
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item d-none d-lg-block">
+            <div class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                <i class="fas fa-user"></i>
+              </a>
+              <ul class="dropdown-menu dropdown-menu-end">
+                <li>
+                  <h5 id="userNameLabel" class="dropdown-header">
+                    Not logged in
+                  </h5>
+                </li>
+                <li><a class="dropdown-item" href="#">Profile</a></li>
+                <li>
+                  <hr class="dropdown-divider" />
+                </li>
+                <li>
+                  <a class="dropdown-item" id="logout" href="#">Logout</a>
+                </li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <div id="body-container">
+      <!-- Left Sidebar -->
+      <nav id="sidebar" class="bg-light sidebar">
+        <div class="sidebar-sticky">
+          <p class="sidebar-heading text-center">Calendars</p>
+          <p class="sidebar-heading text-center">People</p>
+          <p class="sidebar-heading text-center">Schedule</p>
+        </div>
+      </nav>
+
+      <!-- Main Content -->
+      <main id="main" role="main"></main>
+    </div>
+
+    <!-- Third party JS utilities (JQuery, etc) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <!-- App script -->
+    <script type="module" src="js/settings.js"></script>
+  </body>
+</html>
