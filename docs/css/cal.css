@@ -215,7 +215,7 @@ cal-navbar {
     min-width: 195px;
     padding-right: 15px;
     text-align: right;
-    font-size: 1.4rem;
+    font-size: 1.4em;
     font-weight: bold;
     color: var(--title-color);
   }
@@ -236,6 +236,12 @@ cal-navbar {
     width: 0px;
     /* Hide any text that might show up */
     color: var(--main-background-color);
+  }
+
+  #cal-navbar-today-btn {
+    font-size: 1em;
+    padding-top: 0.2em;
+    padding-bottom: 0.2em;
   }
 }
 
@@ -260,7 +266,7 @@ cal-action-panel {
   }
 
   .cal-action-panel-header {
-    height: 2.1rem;
+    height: 2.1em;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -375,6 +381,18 @@ cal-action-panel {
     font-size: 0.85rem;
     height: 1.5rem;
     padding-top: 0rem;
+  }
+}
+
+/* Overrides for mobile */
+@media only screen and (max-width: 576px) {
+  body {
+    font-size: 10px;
+  }
+}
+@media only screen and (min-width: 576px) and (max-width: 768px) {
+  body {
+    font-size: 12px;
   }
 }
 

@@ -23,7 +23,8 @@ class CalComponent extends LitElement {
       color: #8e8e8e;
     }
     .cal-month-gutter {
-      display: flex;
+      /* Default to hidden - see @media query below for showing on larger screens */
+      display: none;
       align-items: start;
       justify-content: end;
     }
@@ -36,20 +37,8 @@ class CalComponent extends LitElement {
     .cal-header {
       height: 2.1rem;
       display: grid;
-      grid-template-columns: var(--month-name-width) repeat(
-          7,
-          minmax(18px, 1fr)
-        );
-      grid-gap: 1px;
-      margin-bottom: 0px;
-    }
-    .cal-header {
-      height: 2.1rem;
-      display: grid;
-      grid-template-columns: var(--month-name-width) repeat(
-          7,
-          minmax(18px, 1fr)
-        );
+      /* Default to not show month gutter column - see @media query below for showing on larger screens */
+      grid-template-columns: repeat(7, minmax(18px, 1fr));
       grid-gap: 1px;
       margin-bottom: 0px;
       border-bottom: 1px solid var(--border-color);
@@ -65,16 +54,33 @@ class CalComponent extends LitElement {
       flex-grow: 1; /* Fill the rest of the vertical space of our parent (cal-component, aka :host) */
       overflow-y: scroll; /* Keep as scroll to have scrollbar always visible. Setting to auto causes performance issues with reflow on every key input. */
       padding: 1px;
-      grid-template-columns: var(--month-name-width) repeat(
-          7,
-          minmax(18px, 1fr)
-        );
+      /* Default to not show month gutter column - see @media query below for showing on larger screens */
+      grid-template-columns: repeat(7, minmax(18px, 1fr));
       /* use min=min-content to make day expand to show full contents. cal-day also has min-height set to make sure it doesn't completely
          collapse when empty. We can't put the minimum height inside minmax(), because with once cal-container has overflowing content,
          it will start to compress the rows, overriding the minimum in grid-auto-rows if set to a specific value. so we put the minimum in cal-day
          min-height instead which takes precedence. */
       grid-auto-rows: minmax(min-content, auto);
       grid-gap: 1px;
+    }
+
+    /* Only show month name gutter when on medium device or larger (https://getbootstrap.com/docs/5.3/layout/breakpoints/) */
+    @media only screen and (min-width: 768px) {
+      .cal-month-gutter {
+        display: flex;
+      }
+      .cal-header {
+        grid-template-columns: var(--month-name-width) repeat(
+            7,
+            minmax(18px, 1fr)
+          );
+      }
+      .cal-container {
+        grid-template-columns: var(--month-name-width) repeat(
+            7,
+            minmax(18px, 1fr)
+          );
+      }
     }
 
     @media print {
