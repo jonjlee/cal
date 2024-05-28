@@ -35,30 +35,17 @@
     <!-- Navigation bar in header -->
     <nav id="header" class="navbar navbar-expand-lg">
       <div class="container-fluid">
-        <!-- Hamburger menu and menu items as icons or list depending on window size -->
-        <button
-          class="navbar-toggler d-block d-md-none"
-          data-bs-toggle="collapse"
-          data-bs-target="#"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-
         <!-- Logo -->
         <a
           id="deptNameLabel"
           class="navbar-brand d-none d-md-block fs-4"
-          href="/cal.html"
+          href="./cal.html"
           ><span class="inline-logo"></span>
         </a>
 
         <div class="flex-grow-1">
-          <!-- By default center text, but on wide (lg) screens, hamburger menu is hidden and the icons on in a flex-grow element, so right align (text-end) the text -->
-          <h3 class="title text-center text-lg-end">Settings</h3>
+          <h3 class="title text-center">Settings</h3>
         </div>
-
-        <!-- Fill horizontal space until hamburger icon / right hand menu icons -->
-        <div class="flex-grow-1"></div>
 
         <ul class="navbar-nav ms-auto">
           <li class="nav-item d-none d-lg-block">
@@ -92,16 +79,18 @@
 
     <div id="body-container">
       <!-- Left Sidebar -->
-      <nav id="sidebar" class="bg-light sidebar">
-        <div class="sidebar-sticky">
-          <p class="sidebar-heading text-center">Calendars</p>
-          <p class="sidebar-heading text-center">People</p>
-          <p class="sidebar-heading text-center">Schedule</p>
-        </div>
+      <nav id="sidebar" class="nav toc">
+        <a class="sidebar-heading active">Calendars</a>
+        <a class="sidebar-heading">People</a>
+        <a class="sidebar-heading">Schedule</a>
       </nav>
 
       <!-- Main Content -->
-      <main id="main" role="main"></main>
+      <main id="mainDiv" role="main">
+        <div class="flex-grow-1 d-flex flex-column">
+          <div class="ms-4 mt-4 text-secondary">Loading...</div>
+        </div>
+      </main>
     </div>
 
     <!-- Third party JS utilities (JQuery, etc) -->
@@ -110,6 +99,7 @@
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
     <!-- App script -->
+    <script type="module" src="js/bling.js"></script>
     <script type="module" src="js/settings.js"></script>
   </body>
 </html>

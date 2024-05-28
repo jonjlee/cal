@@ -1,17 +1,17 @@
+import { Auth } from "./auth/auth.js";
 import * as model from "./model/model.js";
 import { throttle, toast } from "./util.js";
 import * as validate from "./validate/validate.js";
 
 class CalApp {
   constructor() {
-    this.auth = null;
     this.calData = null;
     this.settings = null;
     this.alerts = null;
 
-    // On object creation (page load), initiate login verification and redirect user appropriately. Function execution returns
-    // a promise, which is used to initialize UI after DOMContentLoaded
-    this.initialAuth = this._startInitialAuth();
+    // On object creation (page load), initiate login verification and redirect user appropriately.
+    // auth property is a promise, which is used to initialize UI after DOMContentLoaded
+    this.auth = new Auth("cal.html", window.location.search).auth;
   }
 
   initEmbedMode() {
@@ -25,52 +25,8 @@ class CalApp {
       actionPanel.style.cssText = "display:none !important";
     }
   }
-  async _startInitialAuth() {
-    const qp = new URLSearchParams(window.location.search);
-    const accessCode = qp.get("c");
-    const deptId = qp.get("d");
-    let user = await model.getUser(true);
-    let res = null;
 
-    // Priority for department goes to query params above user settings. Check for dept_id first, then try access code
-    if (deptId) {
-      // Validate logged in user has access
-      if (await model.hasDeptAccess(deptId)) {
-        return { user, deptId };
-      }
-    }
-
-    // Access code specified. Validate code and try to access department
-    if (accessCode) {
-      res = await model.loginByAccessCode(accessCode);
-      if (res.user) {
-        return res;
-      } else {
-        // Access code was invalid, redirect to login
-        window.location.href = "./login.html";
-        throw new Error("Invalid access code, redirecting");
-      }
-    }
-
-    if (user) {
-      // No accessible dept ID or access code. If user logged in, redirect to first accessible dept, which will trigger reload
-      res = await model.getUserDepts();
-      if (res.data?.length > 0) {
-        window.location.href = "./cal.html?d=" + res.data[0].id;
-        throw new Error("Invalid department, redirecting");
-      }
-
-      // No accessible departments, redirect to departments page
-      window.location.href = "./dept.html";
-      throw new Error("No departments, redirecting");
-    }
-
-    // No user logged in. Redirect to login page.
-    window.location.href = "./login.html";
-    throw new Error("User not authenticated, redirecting");
-  }
-
-  // Fetch initial full data set from DB. Accepts auth: { user, deptId } from initialAuth().
+  // Fetch initial full data set from DB. Accepts auth: { user, deptId } from Auth._beginAuth().
   async fetchData(auth) {
     if (!auth.user || auth.deptId == null) {
       throw new Error(
@@ -150,6 +106,11 @@ class CalApp {
 
     if (dept.name) {
       deptNameLabel.innerText = dept.name;
+    }
+    if (dept.id) {
+      deptNameLabel.href = "./cal.html?d=" + dept.id;
+      settingsLink.href = "./settings.html?d=" + dept.id;
+      settingsLink.classList.remove("d-none");
     }
   }
 
@@ -342,7 +303,7 @@ window.SETTINGS = app.settings;
 // On load, check for valid login. If not redirect to login form
 document.on("DOMContentLoaded", () => {
   app.initEmbedMode();
-  app.initialAuth
+  app.auth
     .then((auth) =>
       app
         .fetchData(auth)
@@ -355,8 +316,9 @@ document.on("DOMContentLoaded", () => {
         })
     )
     .catch((err) => {
-      // No authenticated or authentication problem, redirect will be in progress
+      // Not authenticated or authorization problem, redirect.
       console.log(err);
+      window.location.href = app.auth.redirect;
     });
 });
 

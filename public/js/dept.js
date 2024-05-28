@@ -39,7 +39,7 @@ function renderAuthList() {
         (dept) =>
           `<li>
             <div class="list-item">
-              <div><a href="/cal.html?d=${dept.id}">${dept.name}</a></div>
+              <div><a href="./cal.html?d=${dept.id}">${dept.name}</a></div>
             </div>
           </li>`
       );
@@ -67,7 +67,7 @@ function renderPendingList() {
                   }"></i>
                 </a>
               </div> 
-              <a href="/cal.html?c=${btoa(
+              <a href="./cal.html?c=${btoa(
                 dept.access_code
               )}" class="small ps-2">
                 View-only

@@ -56,6 +56,7 @@ export async function hasDeptAccess(deptId) {
 // Given a department access code, see if current user has access. If not, look up view only user and login.
 // Returns logged in { user, error }
 export async function loginByAccessCode(accessCode) {
+  // Get the user data, fetch all fresh fields from DB
   let user = await getUser(true);
 
   // Query dept ID from access code

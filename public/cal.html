@@ -57,7 +57,7 @@
         <a
           id="deptNameLabel"
           class="navbar-brand d-none d-md-block fs-4"
-          href="/cal.html"
+          href="./cal.html"
           ><span class="inline-logo"></span>
         </a>
 
@@ -101,7 +101,7 @@
 
         <ul id="menu" class="navbar-nav ms-auto">
           <li class="nav-item d-none d-lg-block">
-            <a class="nav-link" href="./settings.html"
+            <a id="settingsLink" class="nav-link d-none" href="./settings.html"
               ><i class="fas fa-cog"></i
             ></a>
           </li>
@@ -220,7 +220,7 @@
         </div>
       </nav>
 
-      <main id="main" role="main">
+      <main id="mainDiv" role="main">
         <!-- Main Content (Calendar) -->
         <cal-component id="mainCal">
           <div class="loading">Loading...</div>

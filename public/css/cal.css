@@ -120,8 +120,9 @@ body {
   flex-direction: column;
   min-width: var(--sidebar-width);
   padding: 10px;
-  align-self: stretch;
+
   /* stretch to the height of #body-container */
+  align-self: stretch;
   overflow-y: auto;
 
   /* Main content container of sidebar */
@@ -132,7 +133,7 @@ body {
   }
 }
 
-#main {
+#mainDiv {
   flex-grow: 1;
   align-self: stretch;
   /* stretch to the height of #body-container */
@@ -163,6 +164,15 @@ body {
 
   /* Underline */
   border-bottom: 1px solid var(--border-color);
+}
+.toc > .sidebar-heading {
+  border-bottom: none;
+  color: var(--dark-gray-text);
+  text-decoration: none;
+
+  &.active {
+    color: var(--section-color);
+  }  
 }
 
 .accordion-sidebar-heading {
