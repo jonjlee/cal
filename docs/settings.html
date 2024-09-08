@@ -32,13 +32,13 @@
 
     <!-- App styles -->
 
-    <!-- Components -->
+    <!-- Components -->
 
-    <title>Schedule</title>
-    <script type="module" crossorigin src="/cal/assets/settings-CNmb0-mI.js"></script>
-    <link rel="modulepreload" crossorigin href="/cal/assets/model-8AZnbWHn.js">
-    <link rel="modulepreload" crossorigin href="/cal/assets/auth-Cml8w5An.js">
-    <link rel="stylesheet" crossorigin href="/cal/assets/auth-DHaN0nro.css">
+    <title>Settings</title>
+    <script type="module" crossorigin src="/cal/assets/settings-omUEEHSF.js"></script>
+    <link rel="modulepreload" crossorigin href="/cal/assets/db-kWuhzS5Q.js">
+    <link rel="modulepreload" crossorigin href="/cal/assets/auth-BaWwT4vD.js">
+    <link rel="stylesheet" crossorigin href="/cal/assets/auth-HhhgemtJ.css">
   </head>
 
   <body>
@@ -87,15 +87,18 @@
       </div>
     </nav>
 
-    <!-- Loading message -->
+    <!-- Loading message (hidden by settings.initUI() on successful page load) -->
     <div id="loadingDiv" class="container mt-3">
       <div class="row justify-content-center">
-        <div class="col-1 text-center text-secondary">Loading...</div>
+        <div id="loadingText" class="col-1 text-center text-secondary">
+          Loading...
+        </div>
       </div>
     </div>
 
     <!-- Main content: settings -->
-    <div id="settingsDiv" class="settings container mt-4 d-none">
+    <div id="settingsDiv" class="settings container-fluid mt-4 d-none">
+      <!-- Calendars -->
       <div class="row justify-content-center">
         <div class="col-12 col-lg-10 col-xl-8 mx-auto">
           <h4>Calendars</h4>
@@ -104,87 +107,20 @@
               <div class="col-12">
                 <p class="fw-semibold">Calendar List</p>
                 <p class="text-secondary">
-                  Set the list of calendars that are the left side sidebar. Use
-                  a calendar to group events, such as for a clinic location or
-                  group of people.
+                  A calendar is a way to group events. Make a calendar for
+                  things like a clinic location. Calendars are displayed in left
+                  sidebar.
                 </p>
               </div>
               <div class="col-12">
-                <cal-checklist
-                  style="border: 1px solid var(--border-color)"
-                  itemStyle="padding: 0.4em 0.7em;"
-                  id="calList"
-                  selected="0"
-                  addable
-                  selectable
-                ></cal-checklist>
-              </div>
-              <div class="col-12 mt-3">
-                <div class="card p-3 pt-2 pb-2">
-                  <p class="fw-semibold">Details</p>
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="cal-name"
-                    placeholder="Calendar Name"
-                  />
-                  <div class="form-check mt-3">
-                    <label for="cal-visible"
-                      >Show this calendar in the list of calendars in the
-                      sidebar.</label
-                    >
-                    <input
-                      id="cal-visible"
-                      class="form-check-input"
-                      type="checkbox"
-                      checked
-                    />
-                  </div>
-                  <div class="form-check mt-3">
-                    <label for="cal-call"
-                      >Call calendar. Keep events at the bottom of the day, and
-                      use it to route incoming calls.</label
-                    >
-                    <input
-                      id="cal-call"
-                      class="form-check-input"
-                      type="checkbox"
-                      checked
-                    />
-                  </div>
-                  <p class="fw-semibold mt-3">Colors</p>
-                  <div class="row">
-                    <div class="col-1">
-                      <input
-                        id="cal-color"
-                        class="form-control form-control-color form-control-sm"
-                        type="color"
-                        style="width: 2.25em; border-radius: 1.2em"
-                      />
-                    </div>
-                    <label for="cal-color" class="col-sm-10 col-form-label"
-                      >Line color separating the events in this calendar.</label
-                    >
-                  </div>
-                  <div class="row">
-                    <div class="col-1">
-                      <input
-                        id="cal-background"
-                        class="form-control form-control-color form-control-sm"
-                        type="color"
-                        style="width: 2.25em; border-radius: 1.2em"
-                      />
-                    </div>
-                    <label for="cal-background" class="col-sm-10 col-form-label"
-                      >Background color for this calendar.</label
-                    >
-                  </div>
-                </div>
+                <set-callist id="calList"></set-callist>
               </div>
             </div>
           </div>
         </div>
       </div>
+
+      <!-- People -->
       <div class="row justify-content-center mt-4">
         <div class="col-12 col-lg-10 col-xl-8 mx-auto">
           <h4>People</h4>
@@ -198,85 +134,28 @@
                 </p>
               </div>
               <div class="col-12">
-                <div class="list-group">
-                  <button class="list-group-item list-group-item-action active">
-                    Doctors
-                  </button>
-                  <button class="list-group-item list-group-item-action">
-                    Nurses
-                  </button>
-                  <button class="list-group-item list-group-item-action">
-                    Other
-                  </button>
-                  <button
-                    class="list-group-item list-group-item-action text-secondary"
-                  >
-                    <i class="bi-plus"></i> Add
-                  </button>
-                </div>
-              </div>
-              <div class="col-12 mt-3">
-                <div class="card p-3 pt-2 pb-2">
-                  <p class="fw-semibold">Members</p>
-                  <div class="list-group">
-                    <button class="list-group-item list-group-item-action">
-                      Katie
-                    </button>
-                    <button class="list-group-item list-group-item-action">
-                      Kenzie
-                    </button>
-                    <button class="list-group-item list-group-item-action">
-                      Shields
-                    </button>
-                    <button
-                      class="list-group-item list-group-item-action text-secondary"
-                    >
-                      <i class="bi-plus"></i> Add
-                    </button>
-                  </div>
-                </div>
+                <set-peoplelist id="peopleList"></set-peoplelist>
               </div>
             </div>
           </div>
         </div>
       </div>
+
+      <!-- Templates -->
       <div class="row justify-content-center mt-4">
         <div class="col-12 col-lg-10 col-xl-8 mx-auto">
           <h4>Templates</h4>
           <div class="card p-3 pt-2 pb-2">
             <div class="row">
               <div class="col-12">
-                <p class="fw-semibold">Regular Weeks</p>
+                <p class="fw-semibold">Standard Weekly Schedules</p>
                 <p class="text-secondary">
-                  Define templates that can be seen in a regular week. Days with
-                  schedules that do not match one of these templates will be
-                  highlighted.
+                  Create templates for standard schedules. Days that do not match one
+                  of these are highlighted calendar.
                 </p>
               </div>
               <div class="col-12">
-                <div class="list-group">
-                  <button class="list-group-item list-group-item-action active">
-                    Regular, Katie AM
-                  </button>
-                  <button class="list-group-item list-group-item-action">
-                    Regular, Shields AM
-                  </button>
-                  <button
-                    class="list-group-item list-group-item-action text-secondary"
-                  >
-                    <i class="bi-plus"></i> Add
-                  </button>
-                </div>
-              </div>
-              <div class="col-12 mt-3 template-week">
-                <cal-day day="Mon"></cal-day>
-                <cal-day day="Tue"></cal-day>
-                <cal-day day="Wed"></cal-day>
-                <cal-day day="Thu"></cal-day>
-                <cal-day day="Fri"></cal-day>
-                <cal-day day="Sat"></cal-day>
-                <cal-day day="Sun"></cal-day>
-              </div>
+                <set-templates id="templates"></set-templates>
             </div>
           </div>
         </div>
@@ -285,8 +164,6 @@
 
     <!-- Third party JS utilities (JQuery, etc) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
     <!-- App script -->
   </body>
