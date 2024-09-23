@@ -31,10 +31,10 @@
     <!-- Components -->
 
     <title>Schedule</title>
-    <script type="module" crossorigin src="/cal/assets/cal-DnSD5JpL.js"></script>
-    <link rel="modulepreload" crossorigin href="/cal/assets/db-kWuhzS5Q.js">
-    <link rel="modulepreload" crossorigin href="/cal/assets/auth-BaWwT4vD.js">
-    <link rel="stylesheet" crossorigin href="/cal/assets/auth-HhhgemtJ.css">
+    <script type="module" crossorigin src="/cal/assets/cal-B5DbuvHk.js"></script>
+    <link rel="modulepreload" crossorigin href="/cal/assets/db-CavrfT6U.js">
+    <link rel="modulepreload" crossorigin href="/cal/assets/auth-XURf7PiF.js">
+    <link rel="stylesheet" crossorigin href="/cal/assets/auth-CvC7MXSa.css">
   </head>
 
   <body>
@@ -146,69 +146,71 @@
           <div class="accordion accordion-flush pb-3" id="scheduling-container">
             <div class="accordion-item">
               <div
-                class="accordion-button collapsed sidebar-heading d-none"
+                class="accordion-button collapsed sidebar-heading"
                 data-bs-toggle="collapse"
                 data-bs-target="#scheduling-content"
                 aria-expanded="false"
                 aria-controls="scheduling-content"
               >
-                <div class="flex-grow-1">Schedule</div>
+                <div class="flex-grow-1">View</div>
               </div>
               <div
                 id="scheduling-content"
-                class="accordion-collapse collapse"
+                class="accordion-collapse"
                 data-bs-parent="#scheduling-container"
               >
                 <div class="accordion-body">
                   <div>
                     <input
-                      id="view-default"
+                      id="viewDefault"
                       class="form-check-input"
-                      name="scheduling-option"
+                      name="view-option"
                       type="radio"
                       checked="checked"
                     />
-                    <label for="view-default" class="form-check-label"
+                    <label for="viewDefault" class="form-check-label"
                       >Default View</label
                     >
                   </div>
                   <div class="mt-1">
                     <input
-                      id="view-changes"
+                      id="viewChanges"
                       class="form-check-input"
-                      name="scheduling-option"
+                      name="view-option"
                       type="radio"
                     />
-                    <label for="view-changes" class="form-check-label"
+                    <label for="viewChanges" class="form-check-label"
                       >View changes since</label
                     >
-                    <div class="ms-1">
+                    <div class="ms-3 ps-1">
                       <input
-                        id="changeDate"
-                        class="form-control-md ms-3 mt-1"
+                        id="viewChangesDate"
+                        class="form-control-md mt-2"
                         type="date"
                       />
+                      <div class="mt-1 form-switch">
+                        <input
+                          id="showPriorData"
+                          class="form-check-input"
+                          type="checkbox"
+                        />
+                        <label for="showCurrent" class="form-check-label ms-1"
+                          >Show prior data</label
+                        >
+                      </div>
                     </div>
                   </div>
                   <div class="mt-1">
                     <input
-                      id="view-diff"
+                      id="viewEpic"
                       class="form-check-input"
-                      name="scheduling-option"
+                      name="view-option"
                       type="radio"
                     />
-                    <label for="view-diff" class="form-check-label"
+                    <label for="viewEpic" class="form-check-label"
                       >Compare to Epic</label
                     >
-                    <div class="ms-4">
-                      <input id="diffFile" style="display: none" type="file" />
-                      <button
-                        class="btn btn-sm btn-outline-primary"
-                        onclick="document.querySelector('#diffFile').click()"
-                      >
-                        Open File...
-                      </button>
-                    </div>
+                    <div id="epicTs" class="ms-3 ps-1 fs-8 text-muted"></div>
                   </div>
                 </div>
               </div>
