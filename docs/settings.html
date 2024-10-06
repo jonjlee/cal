@@ -32,12 +32,12 @@
 
     <!-- App styles -->
 
-    <!-- Components -->
+    <!-- Components -->
 
     <title>Settings</title>
-    <script type="module" crossorigin src="/cal/assets/settings-CSnwJwVg.js"></script>
-    <link rel="modulepreload" crossorigin href="/cal/assets/db-CavrfT6U.js">
-    <link rel="modulepreload" crossorigin href="/cal/assets/auth-XURf7PiF.js">
+    <script type="module" crossorigin src="/cal/assets/settings-99xGxcf4.js"></script>
+    <link rel="modulepreload" crossorigin href="/cal/assets/db-DgbyiZOf.js">
+    <link rel="modulepreload" crossorigin href="/cal/assets/auth-DJ3NjbAr.js">
     <link rel="stylesheet" crossorigin href="/cal/assets/auth-CvC7MXSa.css">
   </head>
 
@@ -150,12 +150,33 @@
               <div class="col-12">
                 <p class="fw-semibold">Standard Weekly Schedules</p>
                 <p class="text-secondary">
-                  Create templates for standard schedules. Days that do not match one
-                  of these are highlighted calendar.
+                  Create templates for standard schedules. Days that do not
+                  match one of these are highlighted calendar.
                 </p>
               </div>
               <div class="col-12">
                 <set-templates id="templates"></set-templates>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Call -->
+      <div class="row justify-content-center mt-4">
+        <div class="col-12 col-lg-10 col-xl-8 mx-auto">
+          <h4>On-Call Settings</h4>
+          <div class="card p-3 pt-2 pb-2">
+            <div class="row">
+              <div class="col-12">
+                <p class="fw-semibold">Contacts</p>
+                <p class="text-secondary">
+                  Contact information for incoming on-call phone calls.
+                </p>
+              </div>
+              <div class="col-12">
+                <set-contactlist id="contactList"></set-contactlist>
+              </div>
             </div>
           </div>
         </div>
