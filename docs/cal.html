@@ -31,10 +31,10 @@
     <!-- Components -->
 
     <title>Schedule</title>
-    <script type="module" crossorigin src="/cal/assets/cal-DYInKcrA.js"></script>
-    <link rel="modulepreload" crossorigin href="/cal/assets/db-D8_GdIWr.js">
-    <link rel="modulepreload" crossorigin href="/cal/assets/auth-_4MyjGUS.js">
-    <link rel="stylesheet" crossorigin href="/cal/assets/auth-CvC7MXSa.css">
+    <script type="module" crossorigin src="/cal/assets/cal-DPXR_Mtp.js"></script>
+    <link rel="modulepreload" crossorigin href="/cal/assets/db-Bqww2iDH.js">
+    <link rel="modulepreload" crossorigin href="/cal/assets/auth-C7p1yQvI.js">
+    <link rel="stylesheet" crossorigin href="/cal/assets/auth-D7eJ4-LB.css">
   </head>
 
   <body>
@@ -187,7 +187,19 @@
                       </div>
                     </div>
                   </div>
-                  <div class="mt-1">
+                  <div class="mt-2">
+                    <input
+                      id="viewEpic"
+                      class="form-check-input"
+                      name="view-option"
+                      type="radio"
+                    />
+                    <label for="viewEpic" class="form-check-label"
+                      >Compare to Epic</label
+                    >
+                    <div id="epicTs" class="ms-3 ps-1 fs-8 text-muted"></div>
+                  </div>
+                  <div class="mt-2">
                     <input
                       id="viewChanges"
                       class="form-check-input"
@@ -214,18 +226,6 @@
                         >
                       </div>
                     </div>
-                  </div>
-                  <div class="mt-1">
-                    <input
-                      id="viewEpic"
-                      class="form-check-input"
-                      name="view-option"
-                      type="radio"
-                    />
-                    <label for="viewEpic" class="form-check-label"
-                      >Compare to Epic</label
-                    >
-                    <div id="epicTs" class="ms-3 ps-1 fs-8 text-muted"></div>
                   </div>
                 </div>
               </div>
