@@ -282,6 +282,7 @@ var P=Object.defineProperty;var V=(r,e,t)=>e in r?P(r,e,{enumerable:!0,configura
     }
     .dim {
       opacity: 0.8;
+      background: #f2f2f2;
 
       .cal-day-and-note > span {
         opacity: 0.5;
