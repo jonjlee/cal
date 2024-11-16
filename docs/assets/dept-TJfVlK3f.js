@@ -1,8 +1,8 @@
-import{v as u,y as g,z as f,r as m,A as h,B as p,C as L,e as C}from"./db-DWU2Q3vk.js";document.on("DOMContentLoaded",()=>{A().then(v),loginAccessCode.on("keypress",m(loginAccessCodeBtn)),loginAccessCodeBtn.on("click",k),pendingList.on("click",w),createDeptLink.on("click",D),logoutBtn.on("click",y)});function v(){requestCalendars.classList.remove("d-none"),createDept.classList.remove("d-none"),r(),c()}async function A(){await u()||(window.location.href="./login.html")}function r(){g().then(({data:e})=>{if(e!=null&&e.length){authorizedDepts.classList.remove("d-none");const s=e.map(n=>`<li>
+import{r as u,v as g,y as f,z as m,A as h,B as p,C as L,j as C}from"./db-C4-tjaye.js";document.on("DOMContentLoaded",()=>{A().then(v),loginAccessCode.on("keypress",u(loginAccessCodeBtn)),loginAccessCodeBtn.on("click",k),pendingList.on("click",w),createDeptLink.on("click",D),logoutBtn.on("click",y)});function v(){requestCalendars.classList.remove("d-none"),createDept.classList.remove("d-none"),r(),c()}async function A(){await g()||(window.location.href="./login.html")}function r(){f().then(({data:e})=>{if(e!=null&&e.length){authorizedDepts.classList.remove("d-none");const s=e.map(n=>`<li>
             <div class="list-item">
               <div><a href="./cal.html?d=${n.id}">${n.name}</a></div>
             </div>
-          </li>`);authList.innerHTML=s.join("")}else authorizedDepts.classList.add("d-none")})}function c(){f().then(({data:e})=>{if(e!=null&&e.length){pendingDepts.classList.remove("d-none");const s=e.map(n=>`<li>
+          </li>`);authList.innerHTML=s.join("")}else authorizedDepts.classList.add("d-none")})}function c(){m().then(({data:e})=>{if(e!=null&&e.length){pendingDepts.classList.remove("d-none");const s=e.map(n=>`<li>
             <div class="list-item">
               <div class="font-monospace">
                 ${n.access_code}
