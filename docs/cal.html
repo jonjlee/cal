@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <!-- Required meta tags -->
@@ -31,33 +31,30 @@
     <!-- Components -->
 
     <title>Schedule</title>
-    <script type="module" crossorigin src="/assets/cal-CxSriOW7.js"></script>
+    <script type="module" crossorigin src="/assets/cal-BXKhnBGf.js"></script>
     <link rel="modulepreload" crossorigin href="/assets/db-D5gLqEhL.js">
-    <link rel="modulepreload" crossorigin href="/assets/auth-BqOT7ytU.js">
+    <link rel="modulepreload" crossorigin href="/assets/auth-DB7hiG2I.js">
     <link rel="modulepreload" crossorigin href="/assets/cal-checklist-DZQztdPw.js">
-    <link rel="stylesheet" crossorigin href="/assets/auth-De7vOFA6.css">
+    <link rel="stylesheet" crossorigin href="/assets/auth-Clknm6Dq.css">
   </head>
 
   <body>
     <!-- Navigation bar in header -->
     <nav id="header" class="navbar navbar-expand-lg">
       <div class="container-fluid">
-        <!-- Hamburger menu and menu items as icons or list depending on window size -->
-        <button
-          class="navbar-toggler d-block d-md-none d-none"
-          data-bs-toggle="collapse"
-          data-bs-target="#"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <!-- Logo -->
-        <a
-          id="deptNameLabel"
-          class="navbar-brand d-none d-md-block fs-4"
-          href="./cal.html"
-          ><span class="inline-logo"></span>
-        </a>
+        <div class="header-start">
+          <!-- Hamburger menu -->
+          <button id="sidebarToggle" class="navbar-toggler me-2" type="button">
+            <i class="fas fa-bars"></i>
+          </button>
+          <!-- Logo -->
+          <a
+            id="deptNameLabel"
+            class="navbar-brand d-none d-md-block fs-4"
+            href="./cal.html"
+            ><span class="inline-logo"></span>
+          </a>
+        </div>
 
         <div class="flex-grow-1"></div>
         <!-- Navigation bar for calendar that track current month and navigate between months -->
@@ -141,7 +138,7 @@
 
     <div id="body-container">
       <!-- Left Sidebar -->
-      <nav id="sidebar" class="bg-light sidebar d-none d-md-block">
+      <nav id="sidebar" class="bg-light sidebar">
         <div class="sidebar-sticky">
           <p class="sidebar-heading">Calendars</p>
           <cal-callist id="calList"></cal-callist>
@@ -241,6 +238,7 @@
           </div>
         </div>
       </nav>
+      <div id="sidebarBackdrop" class="sidebar-backdrop"></div>
 
       <main id="mainDiv" role="main">
         <!-- Main Content (Calendar) -->
